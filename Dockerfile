@@ -28,6 +28,9 @@ RUN npm install -g \
 
 RUN webdriver-manager update
 
+WORKDIR /protractor
+
+
 
 
 
