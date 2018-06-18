@@ -10,7 +10,7 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
     apt-get update && \
     apt-get install -y google-chrome-stable && \
     curl \
-    nano && \
+    nano \
     wget gnupg && \
     rm -rf /var/lib/apt/lists/*
 
