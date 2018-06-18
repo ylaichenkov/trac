@@ -1,33 +1,24 @@
 FROM node:slim
 
-LABEL vendor="Yevhen Laichenkov" \
-      com.coreAutomation.release-date="29/04/2018"
-
-RUN apt-get update && \
-    apt-get install -y \
-    curl \
-    nano \
-    wget gnupg
-
+LABEL maintainer="Yevhen Laichenkov - elaichenkov@gmail.com" \
+      project-name="Protractor with headless Chrome"  \
+      project-description="Protractor with headless Chrome on Docker and nothing more" \
+      release-date="29/04/2018" \ 
 
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
     apt-get update && \
     apt-get install -y google-chrome-stable && \
+    curl \
+    nano && \
+    wget gnupg && \
     rm -rf /var/lib/apt/lists/*
-
-
-RUN node -v
-
-RUN npm -v
 
 RUN npm install -g \
     npm \
     protractor \
-    webdriver-manager
-
-RUN webdriver-manager update \
-    mkdir /protractor
+    webdriver-manager && webdriver-manager update && \
+    mkdir /protractor && chmod -R 777 /protractor \
 
 WORKDIR /protractor
 
