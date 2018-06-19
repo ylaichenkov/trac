@@ -7,6 +7,8 @@ LABEL maintainer="Yevhen Laichenkov - elaichenkov@gmail.com" \
 
 WORKDIR /tmp
 
+ENV NODE_PATH=/usr/local/lib/node_modules:/protractor/node_modules
+
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
     apt-get update && \
