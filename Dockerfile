@@ -5,7 +5,7 @@ LABEL maintainer="Yevhen Laichenkov - elaichenkov@gmail.com" \
       project-description="Protractor with headless Chrome on Docker and nothing more" \
       release-date="29/04/2018"
 
-RUN addgroup -S jenkins && adduser -S -G jenkins jenkins 
+RUN addgroup -S 1005 && adduser -S -G 1005 jenkins 
 USER jenkins
 
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
