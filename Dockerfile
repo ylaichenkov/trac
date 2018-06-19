@@ -26,10 +26,14 @@ RUN npm install -g \
 #     GOSU_CHOWN="/protractor"
 
 
-RUN adduser --home /app --uid 1005 \
-  --disabled-login --disabled-password --gecos jenkins jenkins
+# RUN adduser --home /app --uid 1005 \
+#   --disabled-login --disabled-password --gecos jenkins jenkins
+
+COPY adduser.sh /
 
 WORKDIR /project
+
+ENTRYPOINT ["/adduser.sh"]
 
 # RUN arch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" && \
 # 	wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/1.10/gosu-$arch" && \
