@@ -22,6 +22,10 @@ RUN npm install -g \
     webdriver-manager update && \
     mkdir /protractor
 
+ENV GOSU_USER="0:0" \
+    GOSU_CHOWN="/protractor"
+
+
 WORKDIR /protractor
 
 COPY gosu-entrypoint.sh /
