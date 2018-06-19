@@ -23,11 +23,11 @@ RUN npm install -g \
     mkdir /protractor && \
     chmod -R 777 /protractor
 
-WORKDIR /protractor
-
 COPY adduser.sh /
 
-RUN [“chmod”, “+x”, "/adduser.sh”]
+WORKDIR /protractor
+
+ENTRYPOINT ["/adduser.sh"]
 
 
 
