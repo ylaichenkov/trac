@@ -23,11 +23,12 @@ RUN npm install -g \
     mkdir /protractor && \
     chmod -R 777 /protractor
 
-COPY adduser.sh /
+RUN groupadd -g 1005 jenkins && \
+    useradd -r -u 1005 -g jenkins jenkins
+USER jenkins
 
 WORKDIR /protractor
 
-ENTRYPOINT ["/adduser.sh"]
 
 
 
