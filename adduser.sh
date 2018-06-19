@@ -5,4 +5,4 @@ gid=$(stat -c %g ${PWD})
 groupadd -o -g $gid protractor
 useradd -m -o -u $uid -g $gid protractor
 
-sudo -u protractor protractor -a protractor $@
+sudo -u protractor -a protractor $@
