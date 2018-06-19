@@ -19,8 +19,7 @@ RUN npm install -g \
     npm \
     protractor \
     webdriver-manager && \
-    webdriver-manager update && \
-    mkdir /home/node
+    webdriver-manager update
 
 RUN arch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" && \
 	wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/1.10/gosu-$arch" && \
