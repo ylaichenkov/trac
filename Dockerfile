@@ -38,7 +38,7 @@ RUN npm install -g \
 
 COPY adduser.sh /
 
-RUN chmod +x /adduser.sh
+# RUN chmod +x /adduser.sh
 
 WORKDIR /protractor
 
