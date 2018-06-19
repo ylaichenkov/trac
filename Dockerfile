@@ -20,15 +20,16 @@ RUN npm install -g \
     protractor \
     webdriver-manager && \
     webdriver-manager update && \
-    mkdir /protractor && \
-    chmod -R 777 /protractor
-
-RUN groupadd -g 1005 jenkins && \
-    useradd -r -u 1005 -g jenkins jenkins
-USER jenkins
+    mkdir /protractor
 
 WORKDIR /protractor
 
+COPY gosu-entrypoint.sh /
+#RUN chmod +x /gosu-entrypoint.sh && \
+#	/showversions.sh
+RUN chmod +x /gosu-entrypoint.sh
+
+ENTRYPOINT ["/gosu-entrypoint.sh"]
 
 
 
