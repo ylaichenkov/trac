@@ -20,20 +20,24 @@ RUN npm install -g \
     protractor \
     webdriver-manager && \
     webdriver-manager update && \
-    mkdir /protractor
+    mkdir /project
 
-ENV GOSU_USER="0:0" \
-    GOSU_CHOWN="/protractor"
+# ENV GOSU_USER="0:0" \
+#     GOSU_CHOWN="/protractor"
 
+RUN groupadd -g 1005 jenkins
 
-WORKDIR /protractor
+RUN adduser --home /project --uid 1005 \
+  --disabled-login --disabled-password --gecos jenkins jenkins
 
-COPY gosu-entrypoint.sh /
+WORKDIR /project
+
+# COPY gosu-entrypoint.sh /
 #RUN chmod +x /gosu-entrypoint.sh && \
 #	/showversions.sh
-RUN chmod +x /gosu-entrypoint.sh
+# RUN chmod +x /gosu-entrypoint.sh
 
-ENTRYPOINT ["/gosu-entrypoint.sh"]
+# ENTRYPOINT ["/gosu-entrypoint.sh"]
 
 
 
