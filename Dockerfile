@@ -5,10 +5,10 @@ LABEL maintainer="Yevhen Laichenkov - elaichenkov@gmail.com" \
       project-description="Protractor with headless Chrome on Docker and nothing more" \
       release-date="29/04/2018"
 
-RUN groupadd 1005 && \
-    useradd -ms /bin/bash jenkins 
-    
+RUN groupadd -g 999 jenkins && \
+    useradd -r -u 999 -g jenkins jenkins
 USER jenkins
+
 
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
