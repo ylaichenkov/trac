@@ -5,6 +5,8 @@ LABEL maintainer="Yevhen Laichenkov - elaichenkov@gmail.com" \
       project-description="Protractor with headless Chrome on Docker and nothing more" \
       release-date="29/04/2018"
 
+WORKDIR /tmp
+
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
     apt-get update && \
@@ -20,7 +22,7 @@ RUN npm install -g \
     protractor \
     webdriver-manager && \
     webdriver-manager update && \
-    mkdir /project
+    mkdir /protractor
 
 # ENV GOSU_USER="0:0" \
 #     GOSU_CHOWN="/protractor"
@@ -31,7 +33,7 @@ RUN npm install -g \
 
 COPY adduser.sh /
 
-WORKDIR /project
+WORKDIR /protractor
 
 ENTRYPOINT ["/adduser.sh"]
 
