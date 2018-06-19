@@ -20,23 +20,23 @@ RUN npm install -g \
     protractor \
     webdriver-manager && \
     webdriver-manager update && \
-    mkdir /project
+    mkdir /home/node
 
-# ENV GOSU_USER="0:0" \
-#     GOSU_CHOWN="/protractor"
+RUN arch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" && \
+	wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/1.10/gosu-$arch" && \
+	chmod a+x /usr/local/bin/gosu 
 
 
-RUN adduser --home /project --uid 1005 \
-  --disabled-login --disabled-password --gecos jenkins jenkins
+ENV GOSU_USER="0:0" \
+    GOSU_CHOWN="/home/node"
 
-WORKDIR /project
 
-# COPY gosu-entrypoint.sh /
+COPY gosu-entrypoint.sh /
 #RUN chmod +x /gosu-entrypoint.sh && \
 #	/showversions.sh
-# RUN chmod +x /gosu-entrypoint.sh
+RUN chmod +x /gosu-entrypoint.sh
 
-# ENTRYPOINT ["/gosu-entrypoint.sh"]
+ENTRYPOINT ["/gosu-entrypoint.sh"]
 
 
 
