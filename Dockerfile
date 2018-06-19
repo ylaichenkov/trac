@@ -27,7 +27,7 @@ WORKDIR /protractor
 
 COPY adduser.sh /
 
-RUN /adduser.sh
+RUN [“chmod”, “+x”, "/adduser.sh”]
 
 
 
