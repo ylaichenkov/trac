@@ -25,7 +25,6 @@ RUN npm install -g \
 # ENV GOSU_USER="0:0" \
 #     GOSU_CHOWN="/protractor"
 
-RUN groupadd -g 1005 jenkins
 
 RUN adduser --home /project --uid 1005 \
   --disabled-login --disabled-password --gecos jenkins jenkins
