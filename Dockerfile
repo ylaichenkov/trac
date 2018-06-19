@@ -18,6 +18,8 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
     nano \
     sudo \
     wget gnupg && \
+    apt-get install -f -y && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 RUN npm install -g \
