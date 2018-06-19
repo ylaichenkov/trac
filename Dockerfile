@@ -5,6 +5,9 @@ LABEL maintainer="Yevhen Laichenkov - elaichenkov@gmail.com" \
       project-description="Protractor with headless Chrome on Docker and nothing more" \
       release-date="29/04/2018"
 
+RUN useradd -r -u 1005 -g jenkins jenkins
+USER jenkins
+
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
     apt-get update && \
@@ -18,8 +21,10 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 RUN npm install -g \
     npm \
     protractor \
-    webdriver-manager && webdriver-manager update && \
-    mkdir /protractor && chmod -R 777 /protractor
+    webdriver-manager && \
+    webdriver-manager update && \
+    mkdir /protractor && \
+    chmod -R 777 /protractor
 
 WORKDIR /protractor
 
